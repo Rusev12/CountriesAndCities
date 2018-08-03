@@ -1,0 +1,63 @@
+﻿@using CountriesAndCities.Web.Models
+@model CityBindingModel
+
+
+@{
+  ViewBag.Title = "Add";
+}
+
+<h2>Add City</h2>
+
+<p class="text-danger">@TempData["Error"]</p>
+@using (Html.BeginForm("Add", "City", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.LongName, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.LongName, new { @class = "form-control", @placeholder = "Enter name" })
+            @Html.ValidationMessageFor(m => m.LongName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ShortName, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(m => m.ShortName, new { @class = "form-control", @placeholder = "Enter abbreviation" })
+            @Html.ValidationMessageFor(m => m.ShortName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.PostCode, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.EditorFor(m => m.PostCode, new { @class = "form-control", @placeholder = "Enter abbreviation" })
+            @Html.ValidationMessageFor(m => m.PostCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(x => Model.SelectedCountryIso3, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-5">
+            @Html.DropDownListFor(x => Model.SelectedCountryIso3, new SelectList(Model.Countries, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Country" })
+            @Html.ValidationMessageFor(x => x.SelectedCountryIso3, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Website, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.EditorFor(m => m.Website, new { @class = "form-control", @placeholder = "Enter Website" })
+            @Html.ValidationMessageFor(m => m.Website, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,31 @@
+﻿@using CountriesAndCities.Web.Models
+@model List<HomeViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Cities and Countries</h1>
+    
+    
+</div>
+
+<div class="row">
+    @foreach (var country in Model)
+    {
+        <div class="col-md-3">
+            <h2>@country.LongName</h2>
+            <img src="@country.FlagUrl"  width="150"/>
+            <ul>
+                @foreach (var city in country.Cities)
+                {
+                <li>
+                    <p><a href="@city.Website">@city.LongName &raquo;</a></p>
+                </li>
+                }
+            </ul>
+
+        </div>
+    }
+   
+</div>
